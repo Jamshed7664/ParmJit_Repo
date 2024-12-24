@@ -61,7 +61,7 @@
 // console.log('Result of given number is',add(2, 3))
 
 
-let arr = [1,2, 3, 4, 5,];
+let arr = [1, 2, 3, 4, 5,];
 
 // let result = arr.map(e => e * 2);
 // console.log('Result',result);

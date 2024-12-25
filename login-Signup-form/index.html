@@ -23,34 +23,36 @@
 
 
        <div class="signup-form" id="signup_form_view">
-    <form >
+    <form id="registration_Form">
 		<h2>Register</h2>
 		<p class="hint-text">Create your account. It's free and only takes a minute.</p>
+        <div class="alert alert-danger" id="alert_msg_warning">Please enter all required fields.</div>
+        <div class="alert alert-success" id="alert_msg_success">Form submitted successfully.</div>
         <div class="form-group">
 			<div class="row">
-				<div class="col"><input type="text" class="form-control" name="first_name" placeholder="First Name" >
-                <small class="text-danger">First name required</small>
+				<div class="col"><input type="text" class="form-control" name="first_name" id="fname" oninput="onInputFirstName()"  placeholder="First Name" >
+                <small class="text-danger" id="firstName_error_message"></small>
             </div>
-				<div class="col"><input type="text" class="form-control" name="last_name" placeholder="Last Name" >
-                <small class="text-danger">Last name required</small>
+				<div class="col"><input type="text" class="form-control" oninput="onInputLastName()" id="lname" name="last_name" placeholder="Last Name" >
+                <small class="text-danger" id="lastName_error_message"></small>
                 </div>
 			</div>        	
         </div>
         <div class="form-group">
-        	<input type="email" class="form-control" name="email" placeholder="Email" >
-            <small class="text-danger">Email required</small>
+        	<input type="email" class="form-control" name="email" id="email" oninput="onInputEmail()" placeholder="Email" >
+            <small class="text-danger" id="email_error_message"></small>
         </div>
 		<div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password" >
-            <small class="text-danger">Password required</small>
+            <input type="password" class="form-control" name="password"  id="password" oninput="onInputPassword()" placeholder="Password" >
+            <small class="text-danger" id="password_error_message"></small>
         </div>
 		<div class="form-group">
-            <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" >
-            <small class="text-danger">Confirm password required</small>
+            <input type="password" class="form-control" name="confirm_password" id="confirmPassword" oninput="onInputConfirmPassword()" placeholder="Confirm Password" >
+            <small class="text-danger" id="confirm_password_error_message"></small>
         </div>        
         <div class="form-group">
-			<label class="form-check-label"><input type="checkbox" > I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>
-           <br> <small class="text-danger">Please check terms and Policy</small></label>
+			<label class="form-check-label"><input type="checkbox"  id="policy" onchange="onInputPrivacyPolicy()"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>
+           <br> <small class="text-danger" id="policy_error_message"></small></label>
             </label>
 		</div>
 		<div class="form-group">

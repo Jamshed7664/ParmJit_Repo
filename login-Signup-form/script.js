@@ -1,18 +1,20 @@
-function onOnLoadFormPage() {
-    document.getElementById('signup_form_view').style.display = 'flex'
-    document.getElementById('login_form_view').style.display = 'none'
-
-    document.getElementById('alert_msg_warning').style.display = 'none';
-    document.getElementById('alert_msg_success').style.display = 'none';
-
-
-
-    document.getElementById('eye_view_password').classList.add('fa-eye');
-    document.getElementById('eye_view_confirm_password').classList.add('fa-eye');
-    document.getElementById('eye_view_confirm_password2').classList.add('fa-eye');
-}
+// function onOnLoadFormPage() {
 
 document.getElementById('spinner').style.display = 'none';
+
+document.getElementById('signup_form_view').style.display = 'flex'
+document.getElementById('login_form_view').style.display = 'none'
+
+document.getElementById('alert_msg_warning').style.display = 'none';
+document.getElementById('alert_msg_success').style.display = 'none';
+
+
+
+document.getElementById('eye_view_password').classList.add('fa-eye');
+document.getElementById('eye_view_confirm_password').classList.add('fa-eye');
+document.getElementById('eye_view_confirm_password2').classList.add('fa-eye');
+// }
+
 
 
 let signup = true;
@@ -105,10 +107,10 @@ function viewPassword(msg) {
     if (msg == 'view_password') {
         let eyeIcons = document.getElementById('eye_view_password');
         let passwordInput = document.getElementById('password');
-        if (eyeIcons.classList.contains('fa-eye')){ 
+        if (eyeIcons.classList.contains('fa-eye')) {
             eyeIcons.classList.remove('fa-eye');
             eyeIcons.classList.add('fa-eye-slash');
-            passwordInput.setAttribute('type','text')
+            passwordInput.setAttribute('type', 'text')
         } else {
             eyeIcons.classList.remove('fa-eye-slash');
             eyeIcons.classList.add('fa-eye');

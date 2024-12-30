@@ -1,10 +1,19 @@
 function onOnLoadFormPage() {
-    document.getElementById('signup_form_view').style.display = 'block'
+    document.getElementById('signup_form_view').style.display = 'flex'
     document.getElementById('login_form_view').style.display = 'none'
 
-    document.getElementById('alert_msg_warning').style.display = 'none'
-    document.getElementById('alert_msg_success').style.display = 'none'
+    document.getElementById('alert_msg_warning').style.display = 'none';
+    document.getElementById('alert_msg_success').style.display = 'none';
+
+
+
+    document.getElementById('eye_view_password').classList.add('fa-eye');
+    document.getElementById('eye_view_confirm_password').classList.add('fa-eye');
+    document.getElementById('eye_view_confirm_password2').classList.add('fa-eye');
 }
+
+document.getElementById('spinner').style.display = 'none';
+
 
 let signup = true;
 let isSubmit = false;
@@ -92,6 +101,51 @@ function onInputPrivacyPolicy() {
     }
 }
 
+function viewPassword(msg) {
+    if (msg == 'view_password') {
+        let eyeIcons = document.getElementById('eye_view_password');
+        let passwordInput = document.getElementById('password');
+        if (eyeIcons.classList.contains('fa-eye')){ 
+            eyeIcons.classList.remove('fa-eye');
+            eyeIcons.classList.add('fa-eye-slash');
+            passwordInput.setAttribute('type','text')
+        } else {
+            eyeIcons.classList.remove('fa-eye-slash');
+            eyeIcons.classList.add('fa-eye');
+            passwordInput.setAttribute('type', 'password')
+        }
+    } else {
+        let eyeIcons = document.getElementById('eye_view_confirm_password');
+        let confirmPasswordInput = document.getElementById('confirmPassword');
+        if (eyeIcons.classList.contains('fa-eye')) {
+            eyeIcons.classList.remove('fa-eye');
+            eyeIcons.classList.add('fa-eye-slash');
+            confirmPasswordInput.setAttribute('type', 'text')
+        } else {
+            eyeIcons.classList.remove('fa-eye-slash')
+            eyeIcons.classList.add('fa-eye')
+            confirmPasswordInput.setAttribute('type', 'password')
+        }
+    }
+
+
+}
+
+// function viewPassword(id, inputId) {
+//     const eyeIcon = document.getElementById(id);
+//     if (eyeIcon.classList.contains('fa-eye')) {
+//         eyeIcon.classList.remove('fa-eye');
+//         eyeIcon.classList.add('fa-eye-slash');
+//         document.getElementById(inputId).setAttribute('type', 'text')
+//     } else {
+//         eyeIcon.classList.remove('fa-eye-slash');
+//         eyeIcon.classList.add('fa-eye');
+//         document.getElementById(inputId).setAttribute('type', 'password')
+//     }
+// }
+
+
+
 let dataArr = [];
 
 document.getElementById('registration_Form').addEventListener('submit', function (event) {
@@ -130,8 +184,12 @@ document.getElementById('registration_Form').addEventListener('submit', function
         document.getElementById('alert_msg_warning').style.display = 'none'
         document.getElementById('alert_msg_success').style.display = 'block';
 
+        document.getElementById('spinner').style.display = 'inline-block';
+
         setTimeout(() => {
             document.getElementById('alert_msg_success').style.display = 'none';
+            document.getElementById('spinner').style.display = 'none';
+
         }, 1000);
 
 
@@ -145,7 +203,8 @@ document.getElementById('registration_Form').addEventListener('submit', function
         }
 
         dataArr.push(payload);
-        window.localStorage.setItem('userData', JSON.stringify(dataArr))
+        window.localStorage.setItem('userData', JSON.stringify(dataArr));
+
 
     } else {
         document.getElementById('alert_msg_success').style.display = 'none';

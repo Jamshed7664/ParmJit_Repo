@@ -1,20 +1,18 @@
-// function onOnLoadFormPage() {
+function onOnLoadFormPage() {
+    document.getElementById('signup_form_view').style.display = 'flex'
+    document.getElementById('login_form_view').style.display = 'none'
+
+    document.getElementById('alert_msg_warning').style.display = 'none';
+    document.getElementById('alert_msg_success').style.display = 'none';
+
+
+
+    document.getElementById('eye_view_password').classList.add('fa-eye');
+    document.getElementById('eye_view_confirm_password').classList.add('fa-eye');
+    document.getElementById('eye_view_confirm_password2').classList.add('fa-eye');
+}
 
 document.getElementById('spinner').style.display = 'none';
-
-document.getElementById('signup_form_view').style.display = 'flex'
-document.getElementById('login_form_view').style.display = 'none'
-
-document.getElementById('alert_msg_warning').style.display = 'none';
-document.getElementById('alert_msg_success').style.display = 'none';
-
-
-
-document.getElementById('eye_view_password').classList.add('fa-eye');
-document.getElementById('eye_view_confirm_password').classList.add('fa-eye');
-document.getElementById('eye_view_confirm_password2').classList.add('fa-eye');
-// }
-
 
 
 let signup = true;

@@ -23,7 +23,7 @@ function isSignIn() {
         document.getElementById('login_form_view').style.display = 'block';
         signup = false;
     } else {
-        document.getElementById('signup_form_view').style.display = 'block'
+        document.getElementById('signup_form_view').style.display = 'flex'
         document.getElementById('login_form_view').style.display = 'none';
         signup = true;
     }
@@ -146,10 +146,10 @@ function viewPassword(msg) {
 
 
 
-let dataArr = [];
+let userData = [];
 
 document.getElementById('registration_Form').addEventListener('submit', function (event) {
-    event.preventDefault();
+    event.preventDefault(); // for do not reload page
 
     let fname = document.getElementById('fname').value;
     let lname = document.getElementById('lname').value;
@@ -180,31 +180,35 @@ document.getElementById('registration_Form').addEventListener('submit', function
         document.getElementById('confirm_password_error_message').innerHTML = 'Confirm password does not match.';
     }
 
-    if (lname && fname && email && password && confirmPassword && privacyPolicy.checked) {
+    if (fname && lname && email && password && confirmPassword && privacyPolicy.checked) {
         document.getElementById('alert_msg_warning').style.display = 'none'
         document.getElementById('alert_msg_success').style.display = 'block';
-
         document.getElementById('spinner').style.display = 'inline-block';
-
         setTimeout(() => {
             document.getElementById('alert_msg_success').style.display = 'none';
             document.getElementById('spinner').style.display = 'none';
-
         }, 1000);
 
-
         let payload = {
-            first_name: fname,
-            last_name: lname,
-            email: email,
-            password: password,
+            fname,
+            lname,
+            email,
+            password,
             confirmPassword: confirmPassword,
             policy: privacyPolicy.checked
         }
 
-        dataArr.push(payload);
-        window.localStorage.setItem('userData', JSON.stringify(dataArr));
-
+        let storageData = JSON.parse(window.localStorage.getItem('userData'));
+        let isExistData;
+        if (storageData !== null) {
+             isExistData = storageData.find((e) => e.email == email)
+        }
+        if (isExistData) {
+            alert("User already exist.");
+            return;
+        } 
+        userData.push(payload);
+        window.localStorage.setItem('userData', JSON.stringify(userData));
 
     } else {
         document.getElementById('alert_msg_success').style.display = 'none';

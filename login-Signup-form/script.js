@@ -1,3 +1,11 @@
+// Gloabal Variables
+let signup = true;
+let isSubmit = false;
+let userData = [];
+// For dynamic modal , fire on events 
+const alertModal = new bootstrap.Modal(document.getElementById('alertModal'));
+
+
 function onOnLoadFormPage() {
     document.getElementById('signup_form_view').style.display = 'flex'
     document.getElementById('login_form_view').style.display = 'none'
@@ -5,18 +13,12 @@ function onOnLoadFormPage() {
     document.getElementById('alert_msg_warning').style.display = 'none';
     document.getElementById('alert_msg_success').style.display = 'none';
 
-
-
     document.getElementById('eye_view_password').classList.add('fa-eye');
     document.getElementById('eye_view_confirm_password').classList.add('fa-eye');
-    document.getElementById('eye_view_confirm_password2').classList.add('fa-eye');
 }
 
 document.getElementById('spinner').style.display = 'none';
 
-
-let signup = true;
-let isSubmit = false;
 function isSignIn() {
     if (signup) {
         document.getElementById('signup_form_view').style.display = 'none';
@@ -27,7 +29,6 @@ function isSignIn() {
         document.getElementById('login_form_view').style.display = 'none';
         signup = true;
     }
-
 }
 
 function onInputFirstName() {
@@ -52,6 +53,7 @@ function validateEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
 }
+
 function validatePassword(password) {
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
     return passwordRegex.test(password);
@@ -101,6 +103,24 @@ function onInputPrivacyPolicy() {
     }
 }
 
+function showAlert(headerMsg, bodyMessage) {
+    alertModal.show();
+    let headerTitle = document.getElementById('header_Title');
+    let bodyText = document.getElementById('body_Text');
+    headerTitle.innerText = headerMsg;
+    bodyText.innerText = bodyMessage;
+
+    if (headerMsg == 'Successfull' || headerMsg == 'Error') {
+        setTimeout(() => {
+            hideAlert();
+        }, 2000);
+    }
+}
+
+function hideAlert() {
+    alertModal.hide();
+}
+
 function viewPassword(msg) {
     if (msg == 'view_password') {
         let eyeIcons = document.getElementById('eye_view_password');
@@ -127,37 +147,18 @@ function viewPassword(msg) {
             confirmPasswordInput.setAttribute('type', 'password')
         }
     }
-
-
 }
 
-// function viewPassword(id, inputId) {
-//     const eyeIcon = document.getElementById(id);
-//     if (eyeIcon.classList.contains('fa-eye')) {
-//         eyeIcon.classList.remove('fa-eye');
-//         eyeIcon.classList.add('fa-eye-slash');
-//         document.getElementById(inputId).setAttribute('type', 'text')
-//     } else {
-//         eyeIcon.classList.remove('fa-eye-slash');
-//         eyeIcon.classList.add('fa-eye');
-//         document.getElementById(inputId).setAttribute('type', 'password')
-//     }
-// }
-
-
-
-let userData = [];
 
 document.getElementById('registration_Form').addEventListener('submit', function (event) {
     event.preventDefault(); // for do not reload page
-
     let fname = document.getElementById('fname').value;
     let lname = document.getElementById('lname').value;
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
     let confirmPassword = document.getElementById('confirmPassword').value;
     let privacyPolicy = document.getElementById('policy');
-
+    
     if (!fname) {
         document.getElementById('firstName_error_message').innerHTML = 'First name required';
     }
@@ -201,40 +202,20 @@ document.getElementById('registration_Form').addEventListener('submit', function
         let storageData = JSON.parse(window.localStorage.getItem('userData'));
         let isExistData;
         if (storageData !== null) {
-             isExistData = storageData.find((e) => e.email == email)
+            isExistData = storageData.find((e) => e.email == email)
         }
         if (isExistData) {
-            alert("User already exist.");
+            showAlert('Error', "User alreday exist")
             return;
-        } 
+        }
         userData.push(payload);
         window.localStorage.setItem('userData', JSON.stringify(userData));
+        showAlert('Successfull', "User data submitted successfully");
 
     } else {
         document.getElementById('alert_msg_success').style.display = 'none';
         document.getElementById('alert_msg_warning').style.display = 'block'
     }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

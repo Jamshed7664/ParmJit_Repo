@@ -4,6 +4,16 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.modal-header,
+.modal-body {
+    color: black !important;
+}
+
+.modal-content {
+    border-radius: 0 !important;
+    border: 0 !important;
+}
+
 .form-control {
     height: 40px;
     box-shadow: none;

@@ -20,7 +20,7 @@
 
     <div class="signup-form" id="signup_form_view">
         <form id="registration_Form">
-            <h2>Register</h2>
+            <h2>Sign up</h2>
             <p class="hint-text">Create your account. It's free and only takes a minute.</p>
             <div class="alert alert-danger" id="alert_msg_warning">Please enter all required fields.</div>
             <div class="alert alert-success" id="alert_msg_success">Form submitted successfully.</div>
@@ -89,7 +89,7 @@
 
 
     <div class="login-form" id="login_form_view">
-        <form>
+        <form id="login_form">
             <h2 class="text-center">Sign in</h2>
             <div class="form-group">
                 <div class="input-group">
@@ -98,9 +98,9 @@
                             <span class="fa fa-user"></span>
                         </span>
                     </div>
-                    <input type="text" class="form-control" name="username" placeholder="Username">
+                    <input type="text" class="form-control" oninput="OnInputUserName()" id="username" value="jamshed7664@gmail.com" name="username" placeholder="Username">
                 </div>
-                <small class="text-danger">User name required</small>
+                <small class="text-danger" id="username_error_message"></small>
             </div>
             <div class="form-group">
                 <div class="input-group">
@@ -109,9 +109,9 @@
                             <i class="fa fa-lock"></i>
                         </span>
                     </div>
-                    <input type="password" class="form-control" name="password" placeholder="Password">
+                    <input type="password" id="login_password" value="Embibe@123"  oninput="OnInputLoginPassword()" class="form-control" name="password" placeholder="Password">
                 </div>
-                <small class="text-danger">Password required</small>
+                <small class="text-danger" id="login_password_error_message"></small>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary login-btn btn-block">Sign in</button>

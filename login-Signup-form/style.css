@@ -1,6 +1,6 @@
 body {
     color: #fff;
-    background: #63738a;
+    background: navy;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -127,12 +127,24 @@ body {
 
 
 /* Login form Style */
-
-.login-form {
-    width: 500px;
-    margin: 30px auto;
+.text-primary{
+    cursor: pointer;
 }
 
+.login-form {
+    height: 100vh;
+    width: 712px;
+    margin: 0 auto;
+    padding: 30px 0;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.login_form{
+    width: 537px !important;
+}
 .login-form form {
     margin-bottom: 15px;
     background: #f7f7f7;

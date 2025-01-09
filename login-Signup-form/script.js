@@ -22,7 +22,7 @@ document.getElementById('spinner').style.display = 'none';
 function isSignIn() {
     if (signup) {
         document.getElementById('signup_form_view').style.display = 'none';
-        document.getElementById('login_form_view').style.display = 'block';
+        document.getElementById('login_form_view').style.display = 'flex';
         signup = false;
     } else {
         document.getElementById('signup_form_view').style.display = 'flex'
@@ -218,4 +218,57 @@ document.getElementById('registration_Form').addEventListener('submit', function
     }
 })
 
+
+
+// login form code
+
+
+function OnInputUserName() {
+    // username = email
+    let userNameValue = document.getElementById('username').value;
+    if (!userNameValue) {
+        document.getElementById('username_error_message').innerText = "User name required.";
+    } else if (!validateEmail(userNameValue)) {
+        document.getElementById('username_error_message').innerText = "Email should be valid";
+    }
+    else {
+        document.getElementById('username_error_message').innerText = ""
+    }
+}
+
+function OnInputLoginPassword() {
+    let loginPasswordValue = document.getElementById('login_password').value;
+    console.log(loginPasswordValue)
+    if (!loginPasswordValue) {
+        document.getElementById('login_password_error_message').innerText = "Password required.";
+    }else {
+        document.getElementById('login_password_error_message').innerText = "";
+    }
+}
+
+
+document.getElementById('login_form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    let userNameValue = document.getElementById('username').value;
+    let loginPasswordValue = document.getElementById('login_password').value;
+
+    if (userNameValue && loginPasswordValue) {
+        let storageData = JSON.parse(window.localStorage.getItem('userData'));
+        let checkExsistingUser = storageData.find(e => (e.email).toLowerCase() == (userNameValue).toLowerCase());
+        if (checkExsistingUser) {
+              showAlert('Success',"Loggedin Successfully")
+        } else {
+            showAlert('Error', "User does not exist with us.")
+        }
+    } else {
+        if (!userNameValue && !loginPasswordValue) {
+            document.getElementById('username_error_message').innerText = "User name required.";
+            document.getElementById('login_password_error_message').innerText = "Password required.";
+        } else if (!loginPasswordValue) {
+            document.getElementById('login_password_error_message').innerText = "Password required.";
+        } else {
+            document.getElementById('username_error_message').innerText = "User name required.";
+        }
+    }
+})
 

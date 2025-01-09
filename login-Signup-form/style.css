@@ -142,7 +142,7 @@ body {
     justify-content: center;
     flex-direction: column;
 }
-.login_form{
+#login_form{
     width: 537px !important;
 }
 .login-form form {

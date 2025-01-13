@@ -1,0 +1,15 @@
+.main{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-body {
+    height: 250px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    color: white;
+    justify-content: center;
+}

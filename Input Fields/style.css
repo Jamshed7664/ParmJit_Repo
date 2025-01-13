@@ -1,0 +1,15 @@
+.main{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-control{
+    box-shadow: none !important;
+}
+
+/* .myStyle{
+    background-color: red !important;
+    color: white !important;
+} */

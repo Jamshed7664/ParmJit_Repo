@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="calculator.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="main">
+       <div class="calculator">
+        <div class="resultscreen">
+           <span class="inner" id="result"></span>
+        </div>
+        <div class="container-fluid"  >
+            <div class="row">
+                <div class="col-10" id="parent">
+                    <div class="row "  style="background-color: #555555;" >
+                        <div class="col-4"><span class="inner" style="cursor: pointer;">1</span></div>
+                        <div class="col-4"><span class="inner" style="cursor: pointer;">2</span></div>
+                        <div class="col-4"><span class="inner" style="cursor: pointer;">3</span></div>
+                        <div class="col-4"><span class="inner" style="cursor: pointer;">4</span></div>
+                        <div class="col-4"><span class="inner" style="cursor: pointer;">5</span></div>
+                        <div class="col-4"><span class="inner" style="cursor: pointer;">6</span></div>
+                        <div class="col-4"><span class="inner" style="cursor: pointer;">7</span></div>
+                        <div class="col-4"><span class="inner" style="cursor: pointer;">8</span></div>
+                        <div class="col-4"><span class="inner" style="cursor: pointer;">9</span></div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-12 bg-successs">
+                            <span>0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 " style="background-color: #f4e660;">
+                    <div class="row" id="calculation">
+                        <div class="col-12" onclick="onClearScreen()"><b>C</b></div>
+                        <div class="col-12"><b>&#247;</b></div>
+                        <div class="col-12"><b>&#xd7;</b></div>
+                        <div class="col-12"><b>&minus;</b></div>
+                        <div class="col-12"><b>&plus;</b></div>
+                        <div class="col-12"><b>&equals;</b></div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+       </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

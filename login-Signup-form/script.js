@@ -7,8 +7,8 @@ const alertModal = new bootstrap.Modal(document.getElementById('alertModal'));
 
 
 function onOnLoadFormPage() {
-    document.getElementById('signup_form_view').style.display = 'flex'
-    document.getElementById('login_form_view').style.display = 'none'
+    document.getElementById('signup_form_view').style.display = 'none'
+    document.getElementById('login_form_view').style.display = 'flex'
 
     document.getElementById('alert_msg_warning').style.display = 'none';
     document.getElementById('alert_msg_success').style.display = 'none';
@@ -219,6 +219,12 @@ document.getElementById('registration_Form').addEventListener('submit', function
 })
 
 
+function viewPrivacy() {
+    let privacyText = `
+   I am committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website [Insert Website Name and URL] or use our services. Please read this policy carefully to understand our views and practices regarding your personal data.
+    `
+    showAlert('Privacy Policy', privacyText)
+}
 
 // login form code
 
@@ -254,12 +260,19 @@ document.getElementById('login_form').addEventListener('submit', function (event
 
     if (userNameValue && loginPasswordValue) {
         let storageData = JSON.parse(window.localStorage.getItem('userData'));
-        let checkExsistingUser = storageData.find(e => (e.email).toLowerCase() == (userNameValue).toLowerCase());
-        if (checkExsistingUser) {
-              showAlert('Success',"Loggedin Successfully")
+        console.log('storageData', storageData)
+        if (storageData !== null) {
+            let checkExsistingUser = storageData.find(e => (e.email).toLowerCase() == (userNameValue).toLowerCase());
+            if (checkExsistingUser) {
+                showAlert('Success', "Loggedin Successfully")
+                window.location.assign('/login-Signup-form/dashboard/dashboard.html') //to redirect on Dashboard page
+            } else {
+                showAlert('Error', "User does not exist with us.")
+            }   
         } else {
-            showAlert('Error', "User does not exist with us.")
+            showAlert('Error', "User does not exist with us.")  
         }
+      
     } else {
         if (!userNameValue && !loginPasswordValue) {
             document.getElementById('username_error_message').innerText = "User name required.";

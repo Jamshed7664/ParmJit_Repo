@@ -142,9 +142,20 @@ body {
     justify-content: center;
     flex-direction: column;
 }
-#login_form{
+#login_form,#forgot_form{
     width: 537px !important;
 }
+.forgot-text{
+    color: blue !important;
+    cursor: pointer ;
+    font-weight: bold;
+    /* text-decoration: underline !important; */
+}
+.forgot-text:hover{
+    text-decoration: underline !important;
+}
+
+
 .login-form form {
     margin-bottom: 15px;
     background: #f7f7f7;

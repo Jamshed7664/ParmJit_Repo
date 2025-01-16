@@ -8,7 +8,9 @@ const alertModal = new bootstrap.Modal(document.getElementById('alertModal'));
 
 function onOnLoadFormPage() {
     document.getElementById('signup_form_view').style.display = 'none'
-    document.getElementById('login_form_view').style.display = 'flex'
+    document.getElementById('login_form_view').style.display = 'flex';
+    document.getElementById('forgot_Password_view').style.display = 'none';
+
 
     document.getElementById('alert_msg_warning').style.display = 'none';
     document.getElementById('alert_msg_success').style.display = 'none';
@@ -23,10 +25,12 @@ function isSignIn() {
     if (signup) {
         document.getElementById('signup_form_view').style.display = 'none';
         document.getElementById('login_form_view').style.display = 'flex';
+        document.getElementById('forgot_Password_view').style.display = 'none';
         signup = false;
     } else {
         document.getElementById('signup_form_view').style.display = 'flex'
         document.getElementById('login_form_view').style.display = 'none';
+        document.getElementById('forgot_Password_view').style.display = 'none';
         signup = true;
     }
 }
@@ -158,7 +162,7 @@ document.getElementById('registration_Form').addEventListener('submit', function
     let password = document.getElementById('password').value;
     let confirmPassword = document.getElementById('confirmPassword').value;
     let privacyPolicy = document.getElementById('policy');
-    
+
     if (!fname) {
         document.getElementById('firstName_error_message').innerHTML = 'First name required';
     }
@@ -247,7 +251,7 @@ function OnInputLoginPassword() {
     console.log(loginPasswordValue)
     if (!loginPasswordValue) {
         document.getElementById('login_password_error_message').innerText = "Password required.";
-    }else {
+    } else {
         document.getElementById('login_password_error_message').innerText = "";
     }
 }
@@ -268,11 +272,11 @@ document.getElementById('login_form').addEventListener('submit', function (event
                 window.location.assign('/login-Signup-form/dashboard/dashboard.html') //to redirect on Dashboard page
             } else {
                 showAlert('Error', "User does not exist with us.")
-            }   
+            }
         } else {
-            showAlert('Error', "User does not exist with us.")  
+            showAlert('Error', "User does not exist with us.")
         }
-      
+
     } else {
         if (!userNameValue && !loginPasswordValue) {
             document.getElementById('username_error_message').innerText = "User name required.";
@@ -285,3 +289,98 @@ document.getElementById('login_form').addEventListener('submit', function (event
     }
 })
 
+
+
+// forgot password code
+
+
+function OnInputForgotPasswordEmail() { //functio declearation
+    let userName = document.getElementById("forgot_user").value;
+    if (userName == '' || !userName) {
+        document.getElementById('forgot_username_error_message').innerText = 'User name required.'
+    } else if (!validateEmail(userName)) {
+        document.getElementById('forgot_username_error_message').innerText = 'Please enter valid email.'
+    } else {
+        document.getElementById('forgot_username_error_message').innerText = ''
+    }
+}
+
+
+let OnInputForgotPassword = function () {  // function expression
+    let password = document.getElementById("forgot_password").value;
+    if (password == '' || !password) {
+        document.getElementById('forgot_password_error_message').innerText = 'Password required.'
+    } else if (!validatePassword(password)) {
+        document.getElementById('forgot_password_error_message').innerText = 'Password must be at least 8 characters long and include at least one uppercase letter, one number, and one special character.'
+    } else {
+        document.getElementById('forgot_password_error_message').innerText = ''
+    }
+}
+
+
+let OnInputConfirmForgotPassword = () => {   // arrow function
+    let password = document.getElementById("forgot_password").value;
+    let cpassword = document.getElementById("forgot_confirm_password").value;
+
+    if (cpassword == '' || !cpassword) {
+        document.getElementById('confirm_forgot_password_error_message').innerText = 'Password required.'
+    } else if (!validatePassword(cpassword)) {
+        document.getElementById('confirm_forgot_password_error_message').innerText = 'Password must be at least 8 characters long and include at least one uppercase letter, one number, and one special character.'
+    } else if (password !== cpassword) {
+        document.getElementById('confirm_forgot_password_error_message').innerText = 'Password are not same.'
+    } else {
+        document.getElementById('confirm_forgot_password_error_message').innerText = ''
+    }
+}
+
+function cancelForgotPasswordFormView() {
+    document.getElementById('signup_form_view').style.display = 'none'
+    document.getElementById('login_form_view').style.display = 'flex';
+    document.getElementById('forgot_Password_view').style.display = 'none';
+}
+
+
+function viewForgotForm() {
+    document.getElementById('signup_form_view').style.display = 'none'
+    document.getElementById('login_form_view').style.display = 'none';
+    document.getElementById('forgot_Password_view').style.display = 'flex';
+}
+
+document.getElementById('forgot_form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    let cpassword = document.getElementById("forgot_confirm_password").value;
+    let userName = document.getElementById("forgot_user").value;
+    let password = document.getElementById("forgot_password").value;
+
+    if (userName && password && cpassword) {
+        let payload = {
+            userName,
+            password,
+            cpassword
+        }
+        let storageData = JSON.parse(window.localStorage.getItem('userData'))
+        let checkExistingUser = storageData.find((e) => (e.email).toLowerCase() == userName.toLowerCase());
+        if (!checkExistingUser) {
+            showAlert('Error',"User does not exist.")
+        } else {
+            checkExistingUser.password = password;
+            storageData.push(checkExistingUser)
+            window.localStorage.setItem('userData', JSON.stringify(storageData))
+            console.log(checkExistingUser)
+            console.log('Form submitted successfully.', payload)
+        }
+    } else {
+        if (!userName) {
+            document.getElementById('forgot_username_error_message').innerText = 'User name required.'
+        }
+
+        if (!password) {
+            document.getElementById('forgot_password_error_message').innerText = 'Password required.'
+        }
+
+        if (!cpassword) {
+            document.getElementById('confirm_forgot_password_error_message').innerText = 'Password required.'
+        }
+    }
+
+})

@@ -114,7 +114,7 @@
            
             <div class="clearfix">
                 <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
-                <a href="#" class="float-right">Forgot Password?</a>
+                <a  class="float-right forgot-text" onclick="viewForgotForm()">Forgot Password?</a>
             </div>
             <div class="form-group mt-3">
                 <button type="submit" class="btn btn-primary login-btn btn-block">Sign in</button>
@@ -130,6 +130,56 @@
         <p class="text-center small">Don't have an account? <a onclick="isSignIn()" class="text-primary">Sign up
                 here!</a></p>
     </div>
+
+    <!-- Forgot password -->
+    <div class="login-form" id="forgot_Password_view"> 
+        <!-- forgot_Password_view => for show/hide form -->
+        <form id="forgot_form">
+            <!-- forgot_form for storage data and variables -->
+            <h2 class="text-center">Forgot Password</h2>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <span class="fa fa-user"></span>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" oninput="OnInputForgotPasswordEmail()" id="forgot_user"
+                        name="username" placeholder="Enter username">
+                </div>
+                <small class="text-danger ml-5" id="forgot_username_error_message"></small>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+                    <input type="password" id="forgot_password"  oninput="OnInputForgotPassword()"
+                        class="form-control" name="password" placeholder="Password">
+                </div>
+                <small class="text-danger ml-5" id="forgot_password_error_message"></small>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+                    <input type="password" id="forgot_confirm_password" oninput="OnInputConfirmForgotPassword()" class="form-control"
+                        name="password" placeholder="Confirm Password">
+                </div>
+                <small class="text-danger ml-5" id="confirm_forgot_password_error_message"></small>
+            </div>
+            <div class="form-group mt-3 text-right">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-danger" onclick="cancelForgotPasswordFormView()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
 
 
     <!-- Modal -->

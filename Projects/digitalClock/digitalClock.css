@@ -1,0 +1,15 @@
+.clock-container {
+    height: 100vh;
+    background-color: lightseagreen;
+    color: red;
+    font-family: "Borel", serif;
+    font-weight: 400;
+    font-style: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-body{
+    text-align: center;
+}

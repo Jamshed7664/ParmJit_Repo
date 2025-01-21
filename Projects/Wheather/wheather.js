@@ -4,7 +4,10 @@
 let baseAPIUrl = 'https://api.openweathermap.org/data/2.5/weather';
 let payload = {};
 let resultData = {};
-
+let cityName = document.getElementById("cityName");
+let currentTemp = document.getElementById("currentTemp");
+let humidity = document.getElementById("humidity");
+let pressure = document.getElementById("pressure");
 function checkWheather() {
     let inputValue = document.getElementById('search').value;
     payload.q = inputValue; // q = City name
@@ -24,10 +27,10 @@ async function fetchWheatherData() {
         return response.json();
     }).then((data) => {
         resultData = data;
-        document.getElementById("cityName").innerHTML = resultData.name ? resultData.name + " (" + resultData.sys.country + ")" : resultData.message;
-        document.getElementById("currentTemp").innerHTML = resultData.main.temp;
-        document.getElementById("humidity").innerHTML = resultData.main.humidity;
-        document.getElementById("pressure").innerHTML = resultData.main.pressure;
+        cityName.innerHTML = resultData.name ? `${resultData.name} (${resultData.sys.country})`  : resultData.message;
+        currentTemp.innerHTML = resultData.main.temp;
+        humidity.innerHTML = resultData.main.humidity;
+        pressure.innerHTML = resultData.main.pressure;
     }).catch((error) => {
         console.log(error);
     });
